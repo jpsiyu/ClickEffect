@@ -15,6 +15,7 @@ public class ClickEffect : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public bool isScale = true;
     public float scaleValue = 1.5f;
     public Sprite target;
+    public Material targetMaterial;
 
     private void Awake() {
         clickImg = transform.GetComponent<Image>();
@@ -46,10 +47,13 @@ public class ClickEffect : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             transform.DOScale(scaleValue, SCALE_DURATION);
         if (target != null)
             clickImg.sprite = target;
+        if (targetMaterial != null)
+            clickImg.material = targetMaterial;
     }
 
     private void ZoomOut() {
         transform.DOScale(1.0f, SCALE_DURATION);
         clickImg.sprite = source;
+        clickImg.material = null;
     }
 }
